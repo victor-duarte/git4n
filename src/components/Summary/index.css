@@ -1,0 +1,20 @@
+.summary {
+  padding: 20px 0;
+}
+
+.summary__list {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  width: 500px;
+}
+
+.summary__list dt,
+.summary__list dd {
+  margin: 0 0 10px 0;
+  width: 50%;
+}
+
+.summary__list dt {
+  font-weight: bold;
+}

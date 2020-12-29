@@ -1,6 +1,7 @@
 import logo from "./logo.svg";
 import UserRegister from "./components/UserRegister";
 import "./App.css";
+import Summary from "./components/Summary";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           Learn React
         </a>
       </header>
+      <Summary />
       <UserRegister />
     </div>
   );
