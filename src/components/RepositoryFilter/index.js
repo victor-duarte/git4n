@@ -61,6 +61,9 @@ function RepositoryFilter(props) {
           ))}
         </ul>
       )}
+      {filteredRepositories && filteredRepositories.length < 1 && (
+        <p>No matches found.</p>
+      )}
     </section>
   );
 }
