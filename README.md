@@ -1,9 +1,11 @@
-## Project
+# Project
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 Application for previewing information related to public repositories of Github
 users.
 
-### Folder Structure
+## Folder Structure
 
 ```
 src
@@ -17,14 +19,14 @@ src
 └── index.js
 ```
 
-### Libraries, Framworks and helpers.
+## Libraries, Framworks and helpers.
 
 - material-ui/core
 - react-cookie
 
-# Getting Started with Create React App
+## Node
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+v14.15.3
 
 ## Available Scripts
 
