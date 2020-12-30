@@ -1,0 +1,55 @@
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableContainer from "@material-ui/core/TableContainer";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
+import "./index.css";
+
+function renderData(data) {
+  return data.map((repository, key) => {
+    const {
+      branches_url,
+      default_branch,
+      description,
+      id,
+      language,
+      name,
+    } = repository;
+    return (
+      <TableRow key={id}>
+        <TableCell>{name}</TableCell>
+        <TableCell>{description}</TableCell>
+        <TableCell>{default_branch}</TableCell>
+        <TableCell>{language}</TableCell>
+        <TableCell>{branches_url}</TableCell>
+      </TableRow>
+    );
+  });
+}
+
+function Repositories(props) {
+  const { repositories } = props;
+
+  return (
+    <section className="repositories">
+      <h2>Public Repositories</h2>
+      <TableContainer>
+        <Table aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell>Name</TableCell>
+              <TableCell>Description</TableCell>
+              <TableCell>Default Branch</TableCell>
+              <TableCell>Language</TableCell>
+              <TableCell>Branch URL</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>{renderData(repositories)}</TableBody>
+        </Table>
+      </TableContainer>
+    </section>
+  );
+}
+
+export default Repositories;
