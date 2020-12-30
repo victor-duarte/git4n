@@ -9,7 +9,7 @@ import TablePagination from "@material-ui/core/TablePagination";
 import "./index.css";
 
 function renderData(data) {
-  return data.map((repository, key) => {
+  return data.map((repository) => {
     const {
       branches_url,
       default_branch,
@@ -18,6 +18,7 @@ function renderData(data) {
       language,
       name,
     } = repository;
+
     return (
       <TableRow key={id}>
         <TableCell>{name}</TableCell>
@@ -66,7 +67,7 @@ function Repositories(props) {
         onChangePage={handleChangePage}
         page={page}
         rowsPerPage={rowsPerPage}
-        rowsPerPageOptions={[5]}
+        rowsPerPageOptions={5}
       />
     </section>
   );
