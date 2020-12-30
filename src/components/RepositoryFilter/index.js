@@ -3,27 +3,25 @@ import TextField from "@material-ui/core/TextField";
 import "./index.css";
 
 function RepositoryFilter(props) {
-  const [matches, setMatches] = useState(null);
+  const [filteredRepositories, setFilteredRepositories] = useState(null);
   const { repositories } = props;
 
   function handleChange(event) {
     const { value } = event.target;
 
     if (value.length < 3) {
-      setMatches(null);
+      setFilteredRepositories(null);
 
       return false;
     }
 
-    // TODO: add debounce
-    // TODO: add other conditions to identify similar repositories?
-    // TODO: describe logic
-    // TODO: suggestions
-    const matchesx = repositories.reduce(
+    // Searches for existence of filtering text in repositories name and description.
+    const reducedMatches = repositories.reduce(
       (acc, cur) => {
-        if (cur.name.toLowerCase().includes(value.toLowerCase())) {
+        if (cur.name && cur.name.toLowerCase().includes(value.toLowerCase())) {
           acc.byName.push(cur);
         } else if (
+          cur.description &&
           cur.description.toLowerCase().includes(value.toLowerCase())
         ) {
           acc.byDescription.push(cur);
@@ -37,18 +35,20 @@ function RepositoryFilter(props) {
       }
     );
 
-    const t = matchesx.byName.concat(matchesx.byDescription).slice(0, 5);
+    const formattedReducedMatches = reducedMatches.byName
+      .concat(reducedMatches.byDescription)
+      .slice(0, 5);
 
-    setMatches(t);
+    setFilteredRepositories(formattedReducedMatches);
   }
 
   return (
     <section className="repository-filter">
       <h2>Filter by Repository</h2>
       <TextField onChange={handleChange} />
-      {matches && (
+      {filteredRepositories && (
         <ul className="repository-filter__list">
-          {matches.map((match) => (
+          {filteredRepositories.map((match) => (
             <li key={`repository-link-${match.id}`}>
               <a
                 href={match.html_url}

@@ -24,34 +24,20 @@ const formData = {
 };
 
 function UserRegister() {
-  const [cookies, setCookie, removeCookie] = useCookies(["user"]);
+  const [cookies, setCookie] = useCookies(["user"]);
   const classes = useStyles();
 
-  // Renders option to clear the `user` cookie
   if (cookies.user) {
-    return (
-      <section className="user-register">
-        <Button
-          color="secondary"
-          onClick={() => {
-            removeCookie("user");
-          }}
-          variant="contained"
-        >
-          Clear user
-        </Button>
-      </section>
-    );
+    return false;
   }
-
   return (
     <section className="user-register">
       <h2>User Registry</h2>
       <Formik
         initialValues={formData}
         onSubmit={(values, { setSubmitting }) => {
-          setCookie("user", values, { path: "/" });
           setSubmitting(false);
+          setCookie("user", values, { path: "/" });
         }}
       >
         {({ isSubmitting }) => (

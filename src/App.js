@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import UserRegister from "./components/UserRegister";
 import { useCookies } from "react-cookie";
 import CssBaseline from "@material-ui/core/CssBaseline";
+import ClearUser from "./components/ClearUser";
 import Repositories from "./components/Repositories";
 import RepositoryFilter from "./components/RepositoryFilter";
 import Summary from "./components/Summary";
@@ -14,6 +15,7 @@ function getUserRepositoryDataUrl(user) {
 
 function App() {
   const [cookies] = useCookies(["user"]);
+  const [clearUserMessage, setClearUserMessage] = useState(null);
   const [repositories, setRepositories] = useState(null);
 
   useEffect(() => {
@@ -28,7 +30,14 @@ function App() {
         getUserRepositoryDataUrl(cookies.user.githubUser)
       ).then((response) => response.json());
 
-      setRepositories(data);
+      if (data.length > -1) {
+        setRepositories(data);
+        setClearUserMessage(null);
+
+        return false;
+      }
+
+      setClearUserMessage(`${cookies.user.githubUser} user does not exist.`);
     })();
   }, [cookies]);
 
@@ -38,6 +47,7 @@ function App() {
       <div className="App">
         <h1>Github User Reviewer</h1>
         <Summary />
+        <ClearUser message={clearUserMessage} />
         <UserRegister />
         {repositories && (
           <React.Fragment>
