@@ -47,7 +47,7 @@ function RepositoryFilter(props) {
       <h2>Filter by Repository</h2>
       <TextField onChange={handleChange} />
       {matches && (
-        <ul>
+        <ul className="repository-filter__list">
           {matches.map((match) => (
             <li key={`repository-link-${match.id}`}>
               <a

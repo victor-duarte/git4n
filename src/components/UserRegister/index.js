@@ -1,8 +1,18 @@
 import { Formik, Form, Field } from "formik";
 import Button from "@material-ui/core/Button";
+import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import { useCookies } from "react-cookie";
 import "./index.css";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    "& .MuiTextField-root": {
+      margin: theme.spacing(1),
+      width: "80%",
+    },
+  },
+}));
 
 const formData = {
   birthdate: "",
@@ -15,6 +25,7 @@ const formData = {
 
 function UserRegister() {
   const [cookies, setCookie, removeCookie] = useCookies(["user"]);
+  const classes = useStyles();
 
   // Renders option to clear the `user` cookie
   if (cookies.user) {
@@ -44,7 +55,7 @@ function UserRegister() {
         }}
       >
         {({ isSubmitting }) => (
-          <Form>
+          <Form className={classes.root}>
             <div>
               <Field
                 as={TextField}

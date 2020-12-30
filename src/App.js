@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import UserRegister from "./components/UserRegister";
 import { useCookies } from "react-cookie";
+import CssBaseline from "@material-ui/core/CssBaseline";
 import Repositories from "./components/Repositories";
 import RepositoryFilter from "./components/RepositoryFilter";
 import Summary from "./components/Summary";
@@ -32,17 +33,20 @@ function App() {
   }, [cookies]);
 
   return (
-    <div className="App">
-      <h1>Github User Reviewer</h1>
-      <Summary />
-      <UserRegister />
-      {repositories && (
-        <React.Fragment>
-          <Repositories repositories={repositories} />
-          <RepositoryFilter repositories={repositories} />
-        </React.Fragment>
-      )}
-    </div>
+    <React.Fragment>
+      <CssBaseline />
+      <div className="App">
+        <h1>Github User Reviewer</h1>
+        <Summary />
+        <UserRegister />
+        {repositories && (
+          <React.Fragment>
+            <Repositories repositories={repositories} />
+            <RepositoryFilter repositories={repositories} />
+          </React.Fragment>
+        )}
+      </div>
+    </React.Fragment>
   );
 }
 
