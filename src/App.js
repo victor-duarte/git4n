@@ -5,28 +5,29 @@ import Repositories from "./components/Repositories";
 import Summary from "./components/Summary";
 import "./App.css";
 
-function getUserDataUrl(user) {
-  return `https://api.github.com/users/${user}`;
+function getUserRepositoryDataUrl(user) {
+  // TODO: add logic for greater that user repository is greater than 100
+  return `https://api.github.com/users/${user}/repos?per_page=100`;
 }
 
 function App() {
   const [cookies] = useCookies(["user"]);
   const [repositories, setRepositories] = useState(null);
 
-  useEffect(async () => {
+  useEffect(() => {
     if (!cookies.user) {
       setRepositories(null);
 
       return false;
     }
 
-    const response = await fetch(getUserDataUrl(cookies.user.githubUser));
-    const data = await response.json();
+    (async () => {
+      const data = await fetch(
+        getUserRepositoryDataUrl(cookies.user.githubUser)
+      ).then((response) => response.json());
 
-    const response2 = await fetch(data.repos_url);
-    const publicRepositories = await response2.json();
-
-    setRepositories(publicRepositories);
+      setRepositories(data);
+    })();
   }, [cookies]);
 
   return (

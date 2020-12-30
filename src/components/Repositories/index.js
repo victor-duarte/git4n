@@ -67,7 +67,7 @@ function Repositories(props) {
         onChangePage={handleChangePage}
         page={page}
         rowsPerPage={rowsPerPage}
-        rowsPerPageOptions={5}
+        rowsPerPageOptions={[5]}
       />
     </section>
   );
