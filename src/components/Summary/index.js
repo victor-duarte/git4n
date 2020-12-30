@@ -1,12 +1,13 @@
+import React from "react";
 import { useCookies } from "react-cookie";
 import "./index.css";
 
 function formatUserData([key, value]) {
   return (
-    <>
+    <React.Fragment key={key}>
       <dt>{key}</dt>
       <dd>{value}</dd>
-    </>
+    </React.Fragment>
   );
 }
 
