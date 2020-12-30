@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import UserRegister from "./components/UserRegister";
 import "./App.css";
 import Summary from "./components/Summary";
@@ -6,20 +5,7 @@ import Summary from "./components/Summary";
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Github User Reviewer</h1>
       <Summary />
       <UserRegister />
     </div>
