@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import UserRegister from "./components/UserRegister";
 import { useCookies } from "react-cookie";
 import Repositories from "./components/Repositories";
+import RepositoryFilter from "./components/RepositoryFilter";
 import Summary from "./components/Summary";
 import "./App.css";
 
@@ -35,7 +36,12 @@ function App() {
       <h1>Github User Reviewer</h1>
       <Summary />
       <UserRegister />
-      {repositories && <Repositories repositories={repositories} />}
+      {repositories && (
+        <React.Fragment>
+          <Repositories repositories={repositories} />
+          <RepositoryFilter repositories={repositories} />
+        </React.Fragment>
+      )}
     </div>
   );
 }
