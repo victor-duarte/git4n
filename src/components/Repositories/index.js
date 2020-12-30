@@ -1,9 +1,11 @@
+import { useState } from "react";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
+import TablePagination from "@material-ui/core/TablePagination";
 import "./index.css";
 
 function renderData(data) {
@@ -30,6 +32,16 @@ function renderData(data) {
 
 function Repositories(props) {
   const { repositories } = props;
+  const [page, setPage] = useState(0);
+  const rowsPerPage = 5;
+  const paginatedData = repositories.slice(
+    page * rowsPerPage,
+    page * rowsPerPage + rowsPerPage
+  );
+
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
 
   return (
     <section className="repositories">
@@ -45,9 +57,17 @@ function Repositories(props) {
               <TableCell>Branch URL</TableCell>
             </TableRow>
           </TableHead>
-          <TableBody>{renderData(repositories)}</TableBody>
+          <TableBody>{renderData(paginatedData)}</TableBody>
         </Table>
       </TableContainer>
+      <TablePagination
+        component="div"
+        count={repositories.length}
+        onChangePage={handleChangePage}
+        page={page}
+        rowsPerPage={rowsPerPage}
+        rowsPerPageOptions={[5]}
+      />
     </section>
   );
 }
