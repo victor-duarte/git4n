@@ -35,6 +35,7 @@ function UserRegister() {
 
   return (
     <section className="user-register">
+      <h2>User Registry</h2>
       <Formik
         initialValues={formData}
         onSubmit={(values, { setSubmitting }) => {
@@ -42,7 +43,7 @@ function UserRegister() {
           setSubmitting(false);
         }}
       >
-        {({ values, isSubmitting }) => (
+        {({ isSubmitting }) => (
           <Form>
             <div>
               <Field
@@ -53,7 +54,7 @@ function UserRegister() {
               />
             </div>
             <div>
-              <TextField
+              <Field
                 as={TextField}
                 label="Last Name"
                 name="lastName"
@@ -61,15 +62,10 @@ function UserRegister() {
               />
             </div>
             <div>
-              <TextField
-                as={TextField}
-                name="userId"
-                type="text"
-                label="User ID"
-              />
+              <Field as={TextField} name="userId" type="text" label="User ID" />
             </div>
             <div>
-              <TextField
+              <Field
                 as={TextField}
                 label="Birth Date"
                 name="birthdate"
@@ -77,15 +73,10 @@ function UserRegister() {
               />
             </div>
             <div>
-              <TextField
-                as={TextField}
-                label="Email"
-                name="email"
-                type="email"
-              />
+              <Field as={TextField} label="Email" name="email" type="email" />
             </div>
             <div>
-              <TextField
+              <Field
                 as={TextField}
                 label="Github User"
                 name="githubUser"
